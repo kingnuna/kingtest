@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+div{
+	width:200xp;
+	height:200px;
+	background-color:gray;
+	color:white;
+}
+img{
+	width:180xp;
+	height:150px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+	let arr = ["#d0","#d1","#d2","#d3","#d4"];
+	let cnt=0;
+	let size=3;
+	$(document).ready(function(){
+		for(let d of arr){
+			$(d).hide();
+		}
+		for(i=0;i<3;i++){
+			$("#t"+i).append($('#d'+(cnt+i)));
+			$('#d'+(cnt+i)).show();
+		}
+		$('#b1').click(function(){
+			if(cnt==0){
+				alert('맨앞입니다');
+				return;
+			}
+			
+			for(let d of arr){
+				let parent = $(d).parent();
+				if(parent != $('#body')){
+					$('#body').append($(d));
+				}
+				$(d).hide();
+			}
+			cnt--;
+			for(i=0;i<3;i++){
+				$("#t"+i).append($('#d'+(cnt+i)));
+				$('#d'+(cnt+i)).show();
+			}
+			
+		});
+		$('#b2').click(function(){
+			if(cnt==2){
+				alert('맨뒤입니다');
+				return;
+			}
+			
+			for(let d of arr){
+				let parent = $(d).parent();
+				if(parent != $('#body')){
+					$('#body').append($(d));
+				}
+				$(d).hide();
+			}
+			cnt++;
+			for(i=0;i<3;i++){
+				$("#t"+i).append($('#d'+(cnt+i)));
+				$('#d'+(cnt+i)).show();
+			}
+			
+		});
+	});
+</script>
+</head>
+<body id='body'>
+	<table>
+		<tr>
+			<td id="t0"></td>
+			<td id="t1"></td>
+			<td id="t2"></td>
+		</tr>
+	</table>
+	<input type="button" id="b1" value="prev">
+	<input type="button" id="b2" value="next">
+	<div id="d0">
+	<h4>img1</h4>
+	<img src="img/img1.jpg">
+	</div>
+	<div id="d1">
+	<h4>img2</h4>
+	<img src="img/img2.jpg">
+	</div>
+	<div id="d2">
+	<h4>img3</h4>
+	<img src="img/img3.jpg">
+	</div>
+	<div id="d3">
+	<h4>img4</h4>
+	<img src="img/img4.jpg">
+	</div>
+	<div id="d4">
+	<h4>img5</h4>
+	<img src="img/img5.jpg">
+	</div>
+</body>
+</html>
